@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recipes
+{% endblock %}
+
+{% block main %}
+
+    <p>A list of all the recipes in the world-wide pantry</p>
+    <form action="/allrecipes" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Add</th>
+                <th>Recipe</th>
+                <th>Cuisine</th>
+                <th>Dish Type</th>
+                <th>Chef</th>
+                <th>Link or Book</th>
+                <th>Page Number</th>
+                <th>Time</th>
+                <th>Complexity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datasheet %}
+                <tr>
+                    <td>
+                        <label class="container input"><input type="checkbox" name="recipe"
+                                value="{{ data.recipe_id }}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>{{ data.recipe_name }}</td>
+                    <td>{{ data.cuisine_name }}</td>
+                    <td>{{ data.dish_type_name }}</td>                    
+                    <td>{{ data.chef_name }}</td>
+                    <td><a href="{{ data.link_book }}">{{ data.link_book }}</a></td>
+                    
+                    {% if data.page_number %}
+                    <td>{{ data.page_number }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if data.time %}
+                    <td>{{ data.time }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    
+                    <td>{{ data.complexity }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit">Add Recipes</button>
+</form>
+{% endblock %}  

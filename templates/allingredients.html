@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Your Pantry
+{% endblock %}
+
+{% block main %}
+
+<p>This is a list of all the ingredients in the world-wide pantry</p>
+<form action="/allingredients" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Add</th>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in datasheet %}
+            <tr>
+                <td>
+                    <label class="container input"><input type="checkbox" name="ingredient"
+                            value="{{ food.ingredient_id }}">
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td>{{ food.ingredient_id }}</td>
+                <td>{{ food.ingredient_name }}</td>
+                <td>{{ food.ingredient_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" type="submit">Add Ingredients</button>
+</form>
+{% endblock %}

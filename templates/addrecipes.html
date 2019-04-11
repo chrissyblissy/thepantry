@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Pantry
+{% endblock %}
+
+{% block main %}
+
+    <p>Add recipes to your pantry here:</p>
+
+    <form action="/addrecipes" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="recipe" placeholder="Recipe" type="text" required/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="cuisine" placeholder="Cuisine" type="text" required/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="dishtype" placeholder="Dish Type" type="text" required/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="chef" placeholder="Chef" type="text"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="link" placeholder="Link or Book Name" type="text"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="page" placeholder="Page Number" type="text"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="time" placeholder="Time" type="text"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="complexity" placeholder="Complexity" type="text"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Add!</button>
+    </form>
+{% endblock %} 

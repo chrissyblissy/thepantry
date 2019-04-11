@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recipes
+{% endblock %}
+
+{% block main %}
+
+    <p>Your recipes go here!</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Recipe</th>
+                <th>Cuisine</th>
+                <th>Dish Type</th>
+                <th>Chef</th>
+                <th>Link or Book</th>
+                <th>Page Number</th>
+                <th>Time</th>
+                <th>Complexity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datasheet %}
+                <tr>
+                    <td>{{ data.recipe_name }}</td>
+                    <td>{{ data.cuisine_name }}</td>
+                    <td>{{ data.dish_type_name }}</td>                    
+                    <td>{{ data.chef_name }}</td>
+                    <td><a href="{{ data.link_book }}">{{ data.link_book }}</a></td>
+
+                    {% if data.page_number %}
+                    <td>{{ data.page_number }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if data.time %}
+                    <td>{{ data.time }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    
+                    <td>{{ data.complexity }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}  

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Pantry
+{% endblock %}
+
+{% block main %}
+
+    <p>The ingredients you have in your pantry go here!</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in datasheet %}
+                <tr>
+                    <td>{{ food.ingredient_name }}</td>
+                    <td>{{ food.ingredient_type }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %} 
