@@ -36,7 +36,7 @@ body {
 }
 
 .navbar-toggler-icon{
-    background-image: url(/static/images/panlarge.png)!important;
+    background-image: url(/static/images/menutoggle3.jpg)!important;
     }
 
 a {
@@ -54,12 +54,14 @@ main .form-control
     /* override Bootstrap's 100% width for form controls */
     width: auto;
 }
-
+* {
+    -webkit-overflow-scrolling: touch;
+}
 main
 {
     /* scroll horizontally as needed */
     overflow-x: auto;
-
+    -webkit-overflow-scrolling: touch;
     /* center contents */
     text-align: center;
 }

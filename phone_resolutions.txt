@@ -1,0 +1,5 @@
+Browser Sizes
+
+Galaxy Note 4 - 360 x 560 px
+
+iPhone 5C - 320 x 460 px

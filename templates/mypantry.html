@@ -6,11 +6,13 @@
 
 {% block main %}
 
-    <p>The ingredients you have in your pantry go here!</p>
-
+<p>The ingredients you have in your pantry go here!</p>
+<a href="/allingredients">Do you want to add ingredients to your pantry?</a>
+<form action="/mypantry" method="post">
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Add to List</th>
                 <th>Item</th>
                 <th>Type</th>
             </tr>
@@ -18,10 +20,18 @@
         <tbody>
             {% for food in datasheet %}
                 <tr>
+                    <td>
+                        <label class="container input"><input type="checkbox" name="ingredient"
+                                value="{{ food.ingredient_id }}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>                    
                     <td>{{ food.ingredient_name }}</td>
                     <td>{{ food.ingredient_type }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <button class="btn btn-primary" type="submit">Add to Shopping List</button>
+</form>
 {% endblock %} 

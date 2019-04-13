@@ -71,7 +71,7 @@ class users(db.Model):
     user_hash = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
-        return '<users %r>' % self.users_name
+        return '<users %r>' % self.user_name
 
 class users_recipes(db.Model):
     __tablename__ = 'users_recipes'
@@ -91,3 +91,13 @@ class users_ingredients(db.Model):
 
     def __repr__(self):
         return '<users_ingredients %r>' % self.user_ingredient_id
+
+class users_lists(db.Model):
+    __tablename = 'users_lists'
+    user_list_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+    ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"), nullable=False)
+    list_amount = db.Column(db.Integer)
+    
+    def __repr__(self):
+        return '<users_lists %r>' % self.user_list_id
