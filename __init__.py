@@ -220,7 +220,7 @@ def mylist():
 
             return redirect("/mylist")
 
-        elif addresult:
+        elif addresult and addresult != "":
 
             # receives food information from HTML form and capitalises it
             food_item = addresult.title()
@@ -247,6 +247,8 @@ def mylist():
             sqlsession.commit()
 
             return redirect("/mylist")
+        else:
+            return apology("Please select ingredients for your shopping list")
 
     else:
         userlistinput = "(SELECT ingredient_id FROM users_lists WHERE user_id=" + \
