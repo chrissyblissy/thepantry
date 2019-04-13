@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Pantry
+{% endblock %}
+
+{% block main %}
+
+    <p>What type of food is that ingredient?</p>
+
+    <form action="/sendtype" method="post">
+        <div>
+            <input autocomplete="off" autofocus class="form-control" name="foodtype" placeholder="Type" type="text"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Add!</button>
+    </form>
+{% endblock %} 

@@ -19,13 +19,14 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
+            <h5 class="nav-item"><a class="nav-link" href="/">The Pantry</a></li>
+        </ul>
         <ul class="navbar-nav mx-auto">
-            <h4 class="nav-item"><a class="nav-link" href="/">The Pantry</a></li>
+            <a href="/"><img src="/static/images/logo.jpeg" id="logo"></a>
         </ul>
-        <ul class="navbar-nav mx-auto" >
-            <a href="/"><img src="/static/images/logo.png" id="logo"></a>
-        </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -33,16 +34,28 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             {% if session.user_id %}
             <ul class="navbar-nav mr-auto  mt-2 mt-lg-0">
-                <li class="nav-item "><a class="nav-link" href="/"><b>My Recipes</b></a></li>
-                <li class="nav-item"><a class="nav-link" href="/addrecipes">Add Recipes</a></li>
-                <li class="nav-item"><a class="nav-link" href="/allrecipes"><i>All Recipes</i></a></li>
+                <li class="nav-item "><a class="nav-link" href="/">My Recipes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/mypantry">My Pantry</a></li>
+                <li class="nav-item"><a class="nav-link" href="/mylist">My List</a></li>
+
+
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/mypantry"><b>My Pantry</b></a></li>
-                <li class="nav-item"><a class="nav-link" href="/addingredients">Add Ingredients</a></li>
-                <li class="nav-item"><a class="nav-link" href="/allingredients"><i>All Ingredients</i></a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Browse
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/addrecipes">Add Recipes</a>
+                        <a class="dropdown-item" href="/allrecipes">All Recipes</a>
+                        <a class="dropdown-item" href="/addingredients">Add Ingredients</a>
+                        <a class="dropdown-item" href="/allingredients">All Ingredients</a>
+                    </div>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
             </ul>
+
             {% else %}
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>

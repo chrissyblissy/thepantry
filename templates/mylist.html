@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Pantry
+{% endblock %}
+
+{% block main %}
+
+<p>Your shopping list!</p>
+
+<form action="/mylist" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Remove</th>
+                <th>Item</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in datasheet %}
+                <tr>
+                    <td>
+                        <label class="container input"><input type="checkbox" name="ingredient"
+                                value="{{ food.ingredient_id }}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>{{ food.ingredient_name }}</td>
+                    <td>{{ food.ingredient_type }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit" value="remove">Remove</button>
+    <p></p>
+    <p></p>
+</form>
+<p></p>
+<form action="/mylist" method="post">
+    <div class="form-group">
+        <input autocomplet="off" autofocus class="form-control" name="addfood" placeholder="Add food" type="text"/>
+    </div>
+    <button class="btn btn-primary" type="submit" value="add">Add to your shopping list</button>
+</form>
+{% endblock %} 
