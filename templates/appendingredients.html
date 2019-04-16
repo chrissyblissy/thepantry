@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Pantry
+{% endblock %}
+
+{% block main %}
+
+    <p>What ingredients are needed?</p>
+
+
+    <form action="/appendingredients" method="post">
+
+        <script
+        src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+        crossorigin="anonymous"></script>
+        
+        <script src="/static/scripts/main.js"></script> 
+        
+        <div id="appendingredients">
+            <div class="form-row">
+                <div class="col mb-2">
+                    <input type="text" class="form-control" placeholder="Ingredient" name="ingredient" required>
+                </div>
+                <div class="col mb-3">
+                    <input type="text" class="form-control" placeholder="Amount" name="amount">
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-success mb-4" id="appendbtn" type="button">More ingredients</button>
+        <button class="btn btn-danger mb-4" id="removebtn" type="button">Remove last ingredient</button>
+        <p></p>
+        <button class="btn btn-primary" type="submit">Add!</button>
+
+  
+    </form>
+
+
+    
+    
+
+
+{% endblock %} 

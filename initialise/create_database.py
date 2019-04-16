@@ -60,7 +60,8 @@ class recipes_ingredients(db.Model):
     recipe_ingredient_id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.recipe_id"), nullable=False)
     ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"), nullable=False)
-
+    ingredient_amount = db.Column(db.String(50))
+    
     def __repr__(self):
         return '<recipes_ingredients %r>' % self.recipe_ingredient_id
 
@@ -87,7 +88,7 @@ class users_ingredients(db.Model):
     user_ingredient_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"), nullable=False)
-    ingredient_amount = db.Column(db.Integer)
+    user_ingredient_amount = db.Column(db.String(50))
 
     def __repr__(self):
         return '<users_ingredients %r>' % self.user_ingredient_id
@@ -97,7 +98,7 @@ class users_lists(db.Model):
     user_list_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"), nullable=False)
-    list_amount = db.Column(db.Integer)
+    list_amount = db.Column(db.String(50))
     
     def __repr__(self):
         return '<users_lists %r>' % self.user_list_id
