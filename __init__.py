@@ -220,7 +220,7 @@ def mylist():
 
             return redirect("/mylist")
 
-        elif addresult:
+        elif addresult and addresult != "":
 
             # receives food information from HTML form and capitalises it
             food_item = addresult.title()
@@ -247,6 +247,8 @@ def mylist():
             sqlsession.commit()
 
             return redirect("/mylist")
+        else:
+            return apology("Please select ingredients for your shopping list")
 
     else:
         userlistinput = "(SELECT ingredient_id FROM users_lists WHERE user_id=" + \
@@ -313,9 +315,34 @@ def addrecipes():
         sqlsession.commit()
 
 
-        return render_template("addrecipes.html")
+        return redirect("/appendingredients")
     else:
         return render_template("addrecipes.html")
+
+@app.route("/appendingredients", methods=['GET', 'POST'])
+@login_required
+def appendingredients():
+    
+    if request.method == "POST":
+
+        ingredientlist = request.form.getlist("ingredient")
+        amountlist = request.form.getlist("amount")
+        
+        return apology(ingredientlist + amountlist)
+        
+        for ingredientid in result:
+            # insert data from HTML form
+            sqlsession.execute(insert(Table('users_ingredients', metadata, autoload=True)).values({
+                "user_id": session.get("user_id"),
+                "ingredient_id": int(ingredientid)
+            }))
+
+        # commit changes to the database
+        sqlsession.commit()
+
+        return redirect("/")
+    else:
+        return render_template("appendingredients.html")
 
 # shows a list of all recipes that have been added by users that have also been approved by admin
 @app.route("/allrecipes", methods=['GET', 'POST'])
@@ -364,6 +391,17 @@ def addingredients():
             "ingredient_type": food_type,
             "ingredient_approved": True                                                 ############## MUST BE MADE FALSE BEFORE RELEASE ###########
         }))
+
+        # Find out the ingredient_id
+        lastid = sqlsession.execute("SELECT LAST_INSERT_ID() AS ingredient_id")
+        for row in lastid:
+            ingredientid = row['ingredient_id']
+
+        # insert data from HTML form
+        sqlsession.execute(insert(Table('users_ingredients', metadata, autoload=True)).values({
+            "user_id": session.get("user_id"),
+            "ingredient_id": ingredientid
+        }))        
 
         # commit changes to the database
         sqlsession.commit()
@@ -426,10 +464,10 @@ def sendtype():
             "ingredient_approved": True                                                 ############## MUST BE MADE FALSE BEFORE RELEASE ###########
         }))
 
-        # Find out the recipe_id
-        lastid = sqlsession.execute("SELECT LAST_INSERT_ID() AS recipe_id")
+        # Find out the ingredient_id
+        lastid = sqlsession.execute("SELECT LAST_INSERT_ID() AS ingredient_id")
         for row in lastid:
-            ingredientid = row['recipe_id']
+            ingredientid = row['ingredient_id']
 
         # insert data from HTML form
         sqlsession.execute(insert(Table('users_lists', metadata, autoload=True)).values({
