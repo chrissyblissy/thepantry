@@ -315,7 +315,8 @@ def addrecipes():
         sqlsession.commit()
 
 
-        return redirect("/appendingredients")
+        # return redirect("/appendingredients") ####### only once appendingredients is completed can this be used ###########
+        return redirect("/")
     else:
         return render_template("addrecipes.html")
 
@@ -327,7 +328,9 @@ def appendingredients():
 
         ingredientlist = request.form.getlist("ingredient")
         amountlist = request.form.getlist("amount")
-        
+#        ingredientid = []
+#        for item in db.engine.execute("SELECT ingredient_id FROM ingredients WHERE ingredient_name IN " + str(ingredientlist)):
+#                ingredientid.append(item)
         return apology(ingredientlist + amountlist)
         
         for ingredientid in result:
